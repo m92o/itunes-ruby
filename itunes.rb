@@ -14,13 +14,23 @@ class ITunes
   def play
     str = `osascript -e 'tell application "iTunes"' -e 'play' -e 'end tell'`
   end
+ 
+  # シャッフル再生
+  def shuffle_play
+    str = `osascript -e 'tell application "iTunes"' -e 'set shuffle of playlist 1 to true' -e 'play playlist 1' -e 'end tell'`
+  end
 
   # 停止
   def stop
     str = `osascript -e 'tell application "iTunes"' -e 'stop' -e 'end tell'`
   end
 
-  # 一時停止／再生
+  # 一時停止
+  def pause
+    str = `osascript -e 'tell application "iTunes"' -e 'pause' -e 'end tell'`
+  end
+
+  # 一時停止／再生（シャッフルだと再生されない？）
   def playpause
     str = `osascript -e 'tell application "iTunes"' -e 'playpause' -e 'end tell'`
   end
@@ -33,6 +43,26 @@ class ITunes
   # 前の曲へ
   def previous
     str = `osascript -e 'tell application "iTunes"' -e 'previous track' -e 'end tell'`
+  end
+
+  # 曲の先頭または前の曲へ
+  def back
+    str = `osascript -e 'tell application "iTunes"' -e 'back track' -e 'end tell'`
+  end
+
+  # 早送り
+  def forward
+    str = `osascript -e 'tell application "iTunes"' -e 'fast forward' -e 'end tell'`
+  end
+
+  # 巻き戻し
+  def rewind
+    str = `osascript -e 'tell application "iTunes"' -e 'rewind' -e 'end tell'`
+  end
+
+  # 早送り/巻き戻しから復帰
+  def resume
+    str = `osascript -e 'tell application "iTunes"' -e 'resume' -e 'end tell'`
   end
 
   # 曲名を取得
