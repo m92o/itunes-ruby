@@ -1,0 +1,61 @@
+#
+# Ruby用 iTunesコントロールライブラリ
+#
+# Copyright (c) 2009 Kunio Murasawa <kunio.murasawa@gmail.com>
+#
+
+名前
+ itunes.rb
+
+作者
+ Kunio Murasawa <kunio.murasawa@gmail.com>
+
+対応機能
+  - 再生
+   - play
+
+  - シャッフル再生
+   - shuffle_play
+
+  - 停止
+   - stop
+
+  - 一時停止
+   - pause
+
+  - 一時停止
+   - playpause
+
+  - 次の曲へ
+   - next
+
+  - 前の曲へ
+   - previous
+
+  - 曲の先頭または前の曲へ
+   - back
+
+  - 早送り
+   - forward
+
+  - 巻き戻し
+   - rewind
+
+  - 早送り/巻き戻しから復帰
+   - resume
+
+  - 曲名を取得
+   - name
+
+  - アーティスト名を取得
+   - artist
+ 
+  - アルバム名を取得
+   - album
+
+取得方法
+ $ git clone git://github.com/m92o/itunes-ruby.git itunes-ruby
+
+ライセンス
+ BSDライセンス
+ 詳細は附属のLICENCEファイルを参照
