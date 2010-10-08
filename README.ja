@@ -1,7 +1,7 @@
 #
 # Ruby用 iTunesコントロールライブラリ
 #
-# Copyright (c) 2009 Kunio Murasawa <kunio.murasawa@gmail.com>
+# Copyright (c) 2009-2010 Kunio Murasawa <kunio.murasawa@gmail.com>
 #
 
 名前
@@ -13,6 +13,9 @@
 対応機能
   - 再生
    - play
+
+  - プレイリスト再生
+   - playlist_play
 
   - シャッフル再生
    - shuffle_play
@@ -49,9 +52,12 @@
 
   - アーティスト名を取得
    - artist
- 
+
   - アルバム名を取得
    - album
+
+  - プレイリスト名を取得
+   - playlist
 
 取得方法
  $ git clone git://github.com/m92o/itunes-ruby.git itunes-ruby

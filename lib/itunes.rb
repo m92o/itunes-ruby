@@ -7,79 +7,92 @@
 #
 class ITunes
   def initialize
-    str = `osascript -e 'tell application "iTunes" to launch'`
+    `osascript -e 'tell application "iTunes" to launch'`
   end
 
   # 再生
-  def play
-    str = `osascript -e 'tell application "iTunes"' -e 'play' -e 'end tell'`
+  def play(no_or_name = "")
+    if no_or_name.class == Fixnum
+      no_or_name = "track #{no_or_name}"
+    elsif no_or_name != ""
+      no_or_name = "track \"#{no_or_name}\""
+    end
+    `osascript -e 'tell application "iTunes"' -e 'play #{no_or_name}' -e 'end tell'`
   end
  
+  # プレイリスト再生
+  def playlist_play(no_or_name = 1, shuffle = false)
+    no_or_name = "\"#{no_or_name}\"" if no_or_name.class == String
+    `osascript -e 'tell application "iTunes"' -e 'set shuffle of playlist #{no_or_name} to #{shuffle}' -e 'play playlist #{no_or_name}' -e 'end tell'`
+  end
+
   # シャッフル再生
-  def shuffle_play
-    str = `osascript -e 'tell application "iTunes"' -e 'set shuffle of playlist 1 to true' -e 'play playlist 1' -e 'end tell'`
+  def shuffle_play(no_or_name = 1)
+    playlist_play(no_or_name, true)
   end
 
   # 停止
   def stop
-    str = `osascript -e 'tell application "iTunes"' -e 'stop' -e 'end tell'`
+    `osascript -e 'tell application "iTunes"' -e 'stop' -e 'end tell'`
   end
 
   # 一時停止
   def pause
-    str = `osascript -e 'tell application "iTunes"' -e 'pause' -e 'end tell'`
+    `osascript -e 'tell application "iTunes"' -e 'pause' -e 'end tell'`
   end
 
   # 一時停止／再生（シャッフルだと再生されない？）
   def playpause
-    str = `osascript -e 'tell application "iTunes"' -e 'playpause' -e 'end tell'`
+    `osascript -e 'tell application "iTunes"' -e 'playpause' -e 'end tell'`
   end
 
   # 次の曲へ
   def next
-    str = `osascript -e 'tell application "iTunes"' -e 'next track' -e 'end tell'`
+    `osascript -e 'tell application "iTunes"' -e 'next track' -e 'end tell'`
   end
 
   # 前の曲へ
   def previous
-    str = `osascript -e 'tell application "iTunes"' -e 'previous track' -e 'end tell'`
+    `osascript -e 'tell application "iTunes"' -e 'previous track' -e 'end tell'`
   end
 
   # 曲の先頭または前の曲へ
   def back
-    str = `osascript -e 'tell application "iTunes"' -e 'back track' -e 'end tell'`
+    `osascript -e 'tell application "iTunes"' -e 'back track' -e 'end tell'`
   end
 
   # 早送り
   def forward
-    str = `osascript -e 'tell application "iTunes"' -e 'fast forward' -e 'end tell'`
+    `osascript -e 'tell application "iTunes"' -e 'fast forward' -e 'end tell'`
   end
 
   # 巻き戻し
   def rewind
-    str = `osascript -e 'tell application "iTunes"' -e 'rewind' -e 'end tell'`
+    `osascript -e 'tell application "iTunes"' -e 'rewind' -e 'end tell'`
   end
 
   # 早送り/巻き戻しから復帰
   def resume
-    str = `osascript -e 'tell application "iTunes"' -e 'resume' -e 'end tell'`
+    `osascript -e 'tell application "iTunes"' -e 'resume' -e 'end tell'`
   end
 
   # 曲名を取得
   def name
-    str = `osascript -e 'tell application "iTunes"' -e 'set trackName to name of current track' -e 'return trackName' -e 'end tell'`
-    (str != "") ? str.chop : nil
+    `osascript -e 'tell application "iTunes"' -e 'set trackName to name of current track' -e 'return trackName' -e 'end tell'`.chop
   end
 
   # アーティスト名を取得
   def artist
-    str = `osascript -e 'tell application "iTunes"' -e 'set trackArtist to artist of current track' -e 'return trackArtist' -e 'end tell'`
-    (str != "") ? str.chop : nil
+    `osascript -e 'tell application "iTunes"' -e 'set trackArtist to artist of current track' -e 'return trackArtist' -e 'end tell'`.chop
   end
 
   # アルバム名を取得
   def album
-    str = `osascript -e 'tell application "iTunes"' -e 'set trackAlbum to album of current track' -e 'return trackAlbum' -e 'end tell'`
-    (str != "") ? str.chop : nil
+    `osascript -e 'tell application "iTunes"' -e 'set trackAlbum to album of current track' -e 'return trackAlbum' -e 'end tell'`.chop
+  end
+
+  # プレイリスト名を取得
+  def playlist
+    `osascript -e 'tell application "iTunes"' -e 'set playlistName to name of current playlist' -e 'return playlistName' -e 'end tell'`.chop
   end
 end
